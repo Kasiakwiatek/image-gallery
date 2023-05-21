@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- REACT LIBRARY -->
+  <script src="https://unpkg.com/react@15.5.4/dist/react.js"></script>
+  <!-- REACT DOM LIBRARY -->
+  <script src="https://unpkg.com/react-dom@15.5.4/dist/react-dom.js"></script>
+  <!-- BABEL LIBRARY -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.25.0/babel.min.js"></script>
+  <title>Vote for the photo</title>
+</head>
+<body>
+
+  <!-- LOCATION TO INSERT REACT CONTENT  -->
+  <div id="app" align="center">React components have not been displayed</div>
+
+  <!-- JAVASCRIPT -->
+  <script type="text/babel">
+
+     class ImgVote extends React.Component {
+       constructor(props) {
+         super(props);
+         this.state = {
+           vote: 0,
+		   width: 350,
+		   height: 230
+         };
+         this.onButtonPlus = this.onButtonPlus.bind(this);
+		 this.onButtonMinus = this.onButtonMinus.bind(this);
+		 this.handleImgEfect = this.handleImgEfect.bind(this);
+		 this.handleImgEfect2 = this.handleImgEfect2.bind(this)
+       }
+       onButtonPlus() {
+         this.setState({
+           vote: this.state.vote +1
+         });
+       }
+	   
+	    onButtonMinus() {
+         this.setState({
+           vote: this.state.vote -1
+         });
+       }
+	   
+	    handleImgEfect2() {
+         this.setState({
+           width: 350,
+		   height: 230
+         });
+      }
+	  
+	   handleImgEfect() {
+         this.setState({
+           width: 400,
+		   height: 260
+         });
+      }
+       render() {
+	     var divVoteStyle ={
+		  display: "inline-block",
+		  width: 450,
+		  margin: 20,
+		  padding: 0,
+		  textAlign: "center",
+		  border: "1px solid #000000",
+		  fontFamily: "'Trebuchet MS', Verdana, 'sans-serif'",
+		  backgroundColor: "#ccc7c8",  /* For browsers that do not support gradients */
+  		  backgroundImage: "linear-gradient(#000, #fff)"
+		 
+		 }
+		  var imgVoteStyle ={
+		  marginTop: 30,
+		  border: "1px solid #000000"
+		 }
+		 
+		 var buttonVoteStyle ={
+		  backgroundColor: "#000000",
+		  color: "#ffffff",
+		  fontSize: 17
+		 }
+         return(
+           <div style={divVoteStyle}>
+		     <img src={this.props.img} style={imgVoteStyle} alt={this.props.alt} onMouseOver={this.handleImgEfect} width={this.state.width} height={this.state.height} onMouseLeave={this.handleImgEfect2}/>
+             <h2>Image {this.props.number}</h2>
+			 <p>Vote if you like it</p>
+             <h2></h2>
+             <button onClick={this.onButtonPlus} style={buttonVoteStyle}>+</button>
+			 <p>Vote if you don't like it</p>
+			 <button onClick={this.onButtonMinus} style={buttonVoteStyle}>-</button>
+			 <p>Total: {this.state.vote}</p>
+           </div>
+         );
+       }
+     }
+
+
+
+    ReactDOM.render(
+       <div>
+        <ImgVote img="https://scontent-waw1-1.xx.fbcdn.net/v/t31.18172-8/18738875_1459556087443286_4751707315828474465_o.jpg?_nc_cat=105&ccb=1-7&_nc_sid=19026a&_nc_ohc=_5nomAzC060AX9LgWnJ&_nc_ht=scontent-waw1-1.xx&oh=00_AfBiQ8AdbbSFy5v-Fy0XvfunRILXXOma51kBAE8Q_S5_6w&oe=647B9343" number="1" alt="Warszawa"/>
+        <ImgVote img="https://scontent-waw1-1.xx.fbcdn.net/v/t31.18172-8/11705512_945066662225567_5120204897230434933_o.jpg?_nc_cat=111&ccb=1-7&_nc_sid=19026a&_nc_ohc=H4TJYp-yOswAX8yaxLS&_nc_oc=AQl5JGz-RFDknEqOoIWH51R3-aNwt2ygjvBLOdTPDwRXCEzJapHvnklc9AiorJphrtA&_nc_ht=scontent-waw1-1.xx&oh=00_AfD7lAk1mqlmyJ-t6lAd8xzCbt6RsswKhyTDKiQEnKkOkg&oe=647B8D59" number="2" alt="Warszawa"/>
+        <ImgVote img="https://scontent-waw1-1.xx.fbcdn.net/v/t31.18172-8/10655161_769188743146694_7067634247218798910_o.jpg?_nc_cat=106&ccb=1-7&_nc_sid=cdbe9c&_nc_ohc=Q6Q4j-LGxWMAX9oRy_D&_nc_ht=scontent-waw1-1.xx&oh=00_AfBgc1XIpnmt0fAgS3C2zHNahICVAAoPHZzoiBDl7erkMA&oe=647B998D" number="3" alt="Grecja"/>
+		<ImgVote img="https://scontent-waw1-1.xx.fbcdn.net/v/t31.18172-8/10481553_720998837965685_4254625015426023503_o.jpg?_nc_cat=104&ccb=1-7&_nc_sid=cdbe9c&_nc_ohc=81jf65du6_0AX-l9KlY&_nc_ht=scontent-waw1-1.xx&oh=00_AfDS-FbtCGHTyL8GnyHYCw1ejIijghouqtQuUU24KZZM6g&oe=647B7D98" number="4" alt="Warszawa"/>
+		<ImgVote img="https://scontent-waw1-1.xx.fbcdn.net/v/t31.18172-8/979930_525911170807787_1730802120_o.jpg?_nc_cat=102&ccb=1-7&_nc_sid=cdbe9c&_nc_ohc=ryoxUZDpYDYAX_ZW1xZ&_nc_ht=scontent-waw1-1.xx&oh=00_AfCXBto4jh0wZAshq2RdcebgP3go1xKB7vq-VD78VcHjtg&oe=647B8C63" number="5" alt="Warszawa"/>
+		<ImgVote img="https://scontent-waw1-1.xx.fbcdn.net/v/t31.18172-8/1048062_525905117475059_353238064_o.jpg?_nc_cat=100&ccb=1-7&_nc_sid=cdbe9c&_nc_ohc=GFBjPTt84L4AX-jp2vg&_nc_ht=scontent-waw1-1.xx&oh=00_AfB-qHUnoKo0hy-pSfs28j0Amv6WPCJ6kMKzizB5DxQhRQ&oe=647B9568" number="6" alt="Warszawa"/>
+		<ImgVote img="https://scontent-waw1-1.xx.fbcdn.net/v/t31.18172-8/11705512_945066662225567_5120204897230434933_o.jpg?_nc_cat=111&ccb=1-7&_nc_sid=19026a&_nc_ohc=H4TJYp-yOswAX8yaxLS&_nc_oc=AQl5JGz-RFDknEqOoIWH51R3-aNwt2ygjvBLOdTPDwRXCEzJapHvnklc9AiorJphrtA&_nc_ht=scontent-waw1-1.xx&oh=00_AfD7lAk1mqlmyJ-t6lAd8xzCbt6RsswKhyTDKiQEnKkOkg&oe=647B8D59" number="7" alt="Warszawa"/>
+		<ImgVote img="https://scontent-waw1-1.xx.fbcdn.net/v/t31.18172-8/10655161_769188743146694_7067634247218798910_o.jpg?_nc_cat=106&ccb=1-7&_nc_sid=cdbe9c&_nc_ohc=Q6Q4j-LGxWMAX9oRy_D&_nc_ht=scontent-waw1-1.xx&oh=00_AfBgc1XIpnmt0fAgS3C2zHNahICVAAoPHZzoiBDl7erkMA&oe=647B998D"/>
+		<ImgVote img="https://scontent-waw1-1.xx.fbcdn.net/v/t31.18172-8/1048062_525905117475059_353238064_o.jpg?_nc_cat=100&ccb=1-7&_nc_sid=cdbe9c&_nc_ohc=GFBjPTt84L4AX-jp2vg&_nc_ht=scontent-waw1-1.xx&oh=00_AfB-qHUnoKo0hy-pSfs28j0Amv6WPCJ6kMKzizB5DxQhRQ&oe=647B9568" number="9" alt="Warszawa"/>
+      </div>,
+      document.getElementById("app")
+    );
+
+  </script>
+
+</body>
+</html>
